@@ -1,0 +1,27 @@
+{
+  "name": "mern-todo-application",
+  "version": "1.0.0",
+  "description": "Full-Stack To-Do List Application with React.js, Node.js, Express.js, and MongoDB",
+  "scripts": {
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "node server/server.js",
+    "test:api": "node server/test-api.js",
+    "view:db": "node server/view-mongo-tasks.js",
+    "install:all": "npm install && npm install --prefix server && npm install --prefix client"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "keywords": [
+    "mern",
+    "react",
+    "nodejs",
+    "express",
+    "mongodb",
+    "todo-app"
+  ],
+  "author": "",
+  "license": "MIT"
+}

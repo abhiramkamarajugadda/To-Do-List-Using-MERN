@@ -1,0 +1,92 @@
+{
+  "info": {
+    "_postman_id": "a9a3b2b4-7182-4f8a-a43c-687f2e46b1d1",
+    "name": "To-Do List API (MERN)",
+    "description": "Collection of REST APIs for To-Do List Application connecting React to Node.js/Express and MongoDB (todo_db).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Get All Tasks",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/tasks",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks"]
+        },
+        "description": "Retrieve all tasks stored in MongoDB (todo_db.tasks)"
+      },
+      "response": []
+    },
+    {
+      "name": "2. Add New Task",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"taskName\": \"Complete React & MongoDB Integration\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/tasks",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks"]
+        },
+        "description": "Add a new task with taskName (isCompleted defaults to false)"
+      },
+      "response": []
+    },
+    {
+      "name": "3. Update Task Status (Mark Completed)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"isCompleted\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/tasks/{{task_id}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks", "{{task_id}}"]
+        },
+        "description": "Update task isCompleted status using task _id"
+      },
+      "response": []
+    },
+    {
+      "name": "4. Delete Task",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/tasks/{{task_id}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "tasks", "{{task_id}}"]
+        },
+        "description": "Delete a task by _id from MongoDB"
+      },
+      "response": []
+    }
+  ]
+}

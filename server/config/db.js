@@ -4,13 +4,13 @@ const connectDB = async () => {
   const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/todo_db';
 
   try {
-    // Attempt connection to configured MongoDB URI (local or Atlas)
+    const isAtlas = uri.startsWith('mongodb+srv://');
     await mongoose.connect(uri, {
-      serverSelectionTimeoutMS: 3000,
+      serverSelectionTimeoutMS: isAtlas ? 10000 : 3000,
     });
-    console.log(`[MongoDB Connected] Successfully connected to database: ${mongoose.connection.name} at ${mongoose.connection.host}`);
+    console.log(`[MongoDB Connected] Successfully connected to ${isAtlas ? 'MongoDB Atlas Cloud' : 'MongoDB'}: database "${mongoose.connection.name}" at ${mongoose.connection.host}`);
   } catch (primaryError) {
-    console.warn(`[MongoDB Notice] Could not connect to primary MongoDB at ${uri} (${primaryError.message}).`);
+    console.warn(`[MongoDB Notice] Could not connect to primary MongoDB at ${uri.replace(/:([^:@]+)@/, ':****@')} (${primaryError.message}).`);
     
     // Fallback: Start an in-memory MongoDB instance so the app runs out-of-the-box
     try {
